@@ -1,0 +1,23 @@
+title: Symphony
+description: 个人博客与思想档案馆
+lang: zh-CN
+timezone: Asia/Shanghai
+url: "https://3516027002att-ui.github.io"
+baseurl: ""
+
+markdown: kramdown
+permalink: /:categories/:year/:month/:day/:title/
+
+collections:
+  notes:
+    output: true
+    permalink: /notes/:name/
+  projects:
+    output: true
+    permalink: /projects/:name/
+
+plugins:
+  - jekyll-feed
+
+exclude:
+  - README.md
