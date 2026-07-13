@@ -5,16 +5,30 @@ title: Home
 
 <section class="post home-index">
   <h1>Symphony</h1>
-  <p class="meta">Notes, essays, and projects.</p>
+  <p class="meta">文章、观察与项目。</p>
 
-  <h2>Notes</h2>
+  <h2>文章</h2>
+  <p class="muted">暂无文章。</p>
+
+  <h2>观察</h2>
   <ul class="list">
-    <li><a href="/notes/2026-06-03-expression-matters/">表达能力正在重新变得重要</a></li>
+    {% for note in site.notes reversed %}
+      <li>
+        <a href="{{ note.url | relative_url }}">{{ note.title }}</a>
+        {% if note.description %}<p>{{ note.description }}</p>{% endif %}
+      </li>
+    {% endfor %}
   </ul>
 
-  <h2>Projects</h2>
+  <h2>项目</h2>
   <ul class="list">
-    <li><a href="/projects/openo1/">OpenO1</a></li>
-    <li><a href="/projects/golf-input-method/">Golf Input Method</a></li>
+    <li>
+      <a href="/projects/openo1/">OpenO1</a>
+      <p>模型无关的通用推理增强 Agent / Reasoning Harness。</p>
+    </li>
+    <li>
+      <a href="/projects/soulforge/">SoulForge</a>
+      <p>面向 Sekiro 与 FromSoftware Mod 的 AI 原生、安全、可审查、可回滚工作台。</p>
+    </li>
   </ul>
 </section>
