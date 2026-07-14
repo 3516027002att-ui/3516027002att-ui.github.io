@@ -5,7 +5,7 @@ title: Home
 
 <section class="post home-index">
   <h1>Symphony</h1>
-  <p class="meta">文章、观察与项目。</p>
+  <p class="meta">文章、观察与思考。</p>
 
   <h2>文章</h2>
   <p class="muted">暂无文章。</p>
@@ -20,15 +20,13 @@ title: Home
     {% endfor %}
   </ul>
 
-  <h2>项目</h2>
+  <h2>思考</h2>
   <ul class="list">
-    <li>
-      <a href="/projects/openo1/">OpenO1</a>
-      <p>模型无关的通用推理增强 Agent / Reasoning Harness。</p>
-    </li>
-    <li>
-      <a href="/projects/soulforge/">SoulForge</a>
-      <p>面向 Sekiro 与 FromSoftware Mod 的 AI 原生、安全、可审查、可回滚工作台。</p>
-    </li>
+    {% for thought in site.thoughts reversed %}
+      <li>
+        <a href="{{ thought.url | relative_url }}">{{ thought.title }}</a>
+        {% if thought.description %}<p>{{ thought.description }}</p>{% endif %}
+      </li>
+    {% endfor %}
   </ul>
 </section>
