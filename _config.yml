@@ -12,9 +12,9 @@ collections:
   notes:
     output: true
     permalink: /notes/:name/
-  projects:
+  thoughts:
     output: true
-    permalink: /projects/:name/
+    permalink: /thoughts/:name/
 
 plugins:
   - jekyll-feed
