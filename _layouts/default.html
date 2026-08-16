@@ -1,34 +1,58 @@
 <!doctype html>
-<html lang="zh-CN">
+<html lang="zh-CN" data-mode="opal">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="{{ page.description | default: site.description }}">
+    <meta name="theme-color" content="#f8f8f5">
     <title>{% if page.title %}{{ page.title }} · {% endif %}{{ site.title }}</title>
     <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
     {% feed_meta %}
   </head>
   <body>
-    <header class="site-header">
-      <div class="container nav">
-        <a class="brand" href="{{ '/' | relative_url }}">{{ site.title }}</a>
-        <nav class="nav-links" aria-label="Main navigation">
-          <a href="{{ '/essays/' | relative_url }}">文章</a>
-          <a href="{{ '/notes/' | relative_url }}">观察</a>
-          <a href="{{ '/thoughts/' | relative_url }}">思考</a>
-          <a href="{{ '/interludes/' | relative_url }}">间奏</a>
-        </nav>
-      </div>
-    </header>
+    <canvas id="spectral-field" aria-hidden="true"></canvas>
 
-    <main class="container">
-      {{ content }}
-    </main>
+    <div class="site-shell">
+      <header class="site-header">
+        <div class="container nav">
+          <a class="brand" href="{{ '/' | relative_url }}" aria-label="Symphony 首页">
+            <span class="brand-mark" aria-hidden="true"></span>
+            <span class="brand-copy">
+              <strong>{{ site.title }}</strong>
+              <small>notes in motion</small>
+            </span>
+          </a>
 
-    <footer class="site-footer">
-      <div class="container">
-        <p>© {{ site.time | date: '%Y' }} Symphony. Built with GitHub Pages.</p>
-      </div>
-    </footer>
+          <div class="nav-cluster">
+            <nav class="nav-links" aria-label="Main navigation">
+              <a href="{{ '/essays/' | relative_url }}">文章</a>
+              <a href="{{ '/notes/' | relative_url }}">观察</a>
+              <a href="{{ '/thoughts/' | relative_url }}">思考</a>
+              <a href="{{ '/interludes/' | relative_url }}">间奏</a>
+            </nav>
+            <button id="motion-toggle" class="motion-toggle" type="button" aria-pressed="false" title="暂停流光背景">
+              <span class="motion-orb" aria-hidden="true"></span>
+              <span class="motion-label">流光</span>
+            </button>
+          </div>
+        </div>
+        <div class="spectral-ribbon" aria-hidden="true"></div>
+      </header>
+
+      <main class="container site-main">
+        {{ content }}
+      </main>
+
+      <footer class="site-footer">
+        <div class="container footer-inner">
+          <p>© {{ site.time | date: '%Y' }} Symphony.</p>
+          <p class="footer-theme"><span class="footer-dot" aria-hidden="true"></span>流光溢彩白 · opal</p>
+        </div>
+      </footer>
+    </div>
+
+    <script src="{{ '/assets/js/theme-config.js' | relative_url }}"></script>
+    <script src="{{ '/assets/js/spectral-field.js' | relative_url }}"></script>
+    <script src="{{ '/assets/js/site-theme.js' | relative_url }}"></script>
   </body>
 </html>
