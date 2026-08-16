@@ -5,7 +5,7 @@ title: Home
 
 <section class="post home-index">
   <h1>Symphony</h1>
-  <p class="meta">文章、观察与思考。</p>
+  <p class="meta">文章、观察、思考与间奏。</p>
 
   <h2>文章</h2>
   <p class="muted">暂无文章。</p>
@@ -29,4 +29,18 @@ title: Home
       </li>
     {% endfor %}
   </ul>
+
+  <h2>间奏</h2>
+  {% if site.interludes and site.interludes.size > 0 %}
+    <ul class="list">
+      {% for interlude in site.interludes reversed %}
+        <li>
+          <a href="{{ interlude.url | relative_url }}">{{ interlude.title }}</a>
+          {% if interlude.description %}<p>{{ interlude.description }}</p>{% endif %}
+        </li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p class="muted">暂无间奏。</p>
+  {% endif %}
 </section>
