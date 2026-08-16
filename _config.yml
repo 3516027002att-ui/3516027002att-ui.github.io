@@ -15,6 +15,9 @@ collections:
   thoughts:
     output: true
     permalink: /thoughts/:name/
+  interludes:
+    output: true
+    permalink: /interludes/:name/
 
 plugins:
   - jekyll-feed
