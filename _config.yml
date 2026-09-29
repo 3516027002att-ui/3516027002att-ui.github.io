@@ -46,3 +46,4 @@ plugins:
 
 exclude:
   - README.md
+  - CLAUDE.md
