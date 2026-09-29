@@ -1,0 +1,17 @@
+---
+layout: default
+---
+{%- assign empty_list = "" | split: "" -%}
+{%- if page.section == "essays" -%}
+  {%- assign docs = site.categories.essay | default: empty_list -%}
+{%- else -%}
+  {%- assign docs = site[page.section] | default: empty_list -%}
+{%- endif -%}
+{%- capture empty_text -%}暂无{{ page.title }}。{%- endcapture -%}
+<header class="page-head">
+  <h1 class="page-title">{{ page.title }}</h1>
+  {%- if page.description %}
+  <p class="page-lede">{{ page.description }}</p>
+  {%- endif %}
+</header>
+{% include entries.html docs=docs empty_text=empty_text %}

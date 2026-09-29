@@ -1,0 +1,33 @@
+{%- comment -%}
+  参数：docs 是要列出的文档；show_section 为真时在日期旁标出栏目；empty_text 是没有条目时的提示。
+  Ruby 的 sort 不保证稳定，所以排序键里带上路径，同一天的条目按路径决定先后。
+{%- endcomment -%}
+{%- assign keys = "" | split: "" -%}
+{%- for doc in include.docs -%}
+  {%- assign key = doc.date | date: "%s" | append: "|" | append: doc.path -%}
+  {%- assign keys = keys | push: key -%}
+{%- endfor -%}
+{%- assign keys = keys | sort | reverse -%}
+{%- if keys.size > 0 %}
+<ol class="entries" role="list">
+{%- for key in keys -%}
+  {%- assign path = key | split: "|" | last -%}
+  {%- assign doc = include.docs | where: "path", path | first %}
+  <li class="entry">
+    <h2 class="entry-title"><a href="{{ doc.url | relative_url }}">{{ doc.title }}</a></h2>
+    <time class="entry-date" datetime="{{ doc.date | date_to_xmlschema }}">{{ doc.date | date: "%Y-%m-%d" }}</time>
+    {%- if include.show_section -%}
+      {%- assign section = site.data.sections | where: "key", doc.section | first -%}
+      {%- if section %}
+    <span class="entry-section">{{ section.title }}</span>
+      {%- endif -%}
+    {%- endif -%}
+    {%- if doc.description %}
+    <p class="entry-desc">{{ doc.description }}</p>
+    {%- endif %}
+  </li>
+{%- endfor %}
+</ol>
+{%- elsif include.empty_text %}
+<p class="entries-empty">{{ include.empty_text }}</p>
+{%- endif %}

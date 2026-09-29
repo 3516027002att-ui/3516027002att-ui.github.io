@@ -1,0 +1,12 @@
+- key: essays
+  title: 文章
+  url: /essays/
+- key: notes
+  title: 观察
+  url: /notes/
+- key: thoughts
+  title: 思考
+  url: /thoughts/
+- key: interludes
+  title: 间奏
+  url: /interludes/

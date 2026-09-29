@@ -1,12 +1,26 @@
 ---
 layout: default
 ---
-
-<article class="post">
-  <p><a href="{{ '/' | relative_url }}">← 首页</a></p>
-  <h1>{{ page.title }}</h1>
-  <p class="meta">
-    {{ page.date | date: "%Y-%m-%d %H:%M" }}{% if page.category == "note" %} · 观察{% elsif page.category == "essay" %} · 文章{% elsif page.category == "thought" %} · 思考{% elsif page.collection == "interludes" %} · 间奏{% endif %}{% if page.tags %} · {{ page.tags | join: ', ' }}{% endif %}
+{%- assign section = site.data.sections | where: "key", page.section | first -%}
+{%- assign clock = page.date | date: "%H:%M" -%}
+<article class="article">
+  <h1 class="article-title">{{ page.title }}</h1>
+  <p class="article-meta">
+    {%- if section %}
+    <a href="{{ section.url | relative_url }}">{{ section.title }}</a>
+    {%- endif %}
+    <time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: "%Y-%m-%d" }}{% if clock != "00:00" %} {{ clock }}{% endif %}</time>
   </p>
-  {{ content }}
+  <div class="article-body">
+    {{ content }}
+  </div>
+  {%- if page.tags and page.tags.size > 0 %}
+  <footer class="article-foot">
+    <ul class="tag-list" role="list" aria-label="标签">
+      {%- for tag in page.tags %}
+      <li>{{ tag }}</li>
+      {%- endfor %}
+    </ul>
+  </footer>
+  {%- endif %}
 </article>

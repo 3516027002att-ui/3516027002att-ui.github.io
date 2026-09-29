@@ -2,11 +2,11 @@ window.SPECTRAL_THEME = {
   schemaVersion: "1.0",
   mode: "opal",
   label: "流光溢彩白",
-  preset: "symphony-opal-v1",
+  preset: "symphony-opal-v2",
   seed: 48173,
-  overallColorIntensity: 0.82,
+  overallColorIntensity: 0.45,
   base: {
-    oklch: { l: 0.982, c: 0.004, h: 94 }
+    oklch: { l: 0.988, c: 0.004, h: 94 }
   },
   colors: [
     {
@@ -19,32 +19,6 @@ window.SPECTRAL_THEME = {
       lightnessBias: 0.004,
       fieldScale: 0.82,
       phase: [0.13, 0.67],
-      measuredCoverage: null,
-      effectiveShare: null
-    },
-    {
-      id: "cyan",
-      label: "海玻璃青",
-      oklch: { l: 0.928, c: 0.043, h: 201 },
-      srgbFallback: "#dceff0",
-      intensity: 0.62,
-      peakOpacity: 0.078,
-      lightnessBias: 0.002,
-      fieldScale: 0.94,
-      phase: [0.78, 0.21],
-      measuredCoverage: null,
-      effectiveShare: null
-    },
-    {
-      id: "lilac",
-      label: "薄雾丁香",
-      oklch: { l: 0.925, c: 0.045, h: 304 },
-      srgbFallback: "#eee3f2",
-      intensity: 0.54,
-      peakOpacity: 0.076,
-      lightnessBias: 0.003,
-      fieldScale: 1.06,
-      phase: [0.39, 0.86],
       measuredCoverage: null,
       effectiveShare: null
     },
@@ -75,6 +49,19 @@ window.SPECTRAL_THEME = {
       effectiveShare: null
     },
     {
+      id: "cyan",
+      label: "海玻璃青",
+      oklch: { l: 0.928, c: 0.043, h: 201 },
+      srgbFallback: "#dceff0",
+      intensity: 0.62,
+      peakOpacity: 0.078,
+      lightnessBias: 0.002,
+      fieldScale: 0.94,
+      phase: [0.78, 0.21],
+      measuredCoverage: null,
+      effectiveShare: null
+    },
+    {
       id: "blue",
       label: "远空蓝",
       oklch: { l: 0.918, c: 0.050, h: 248 },
@@ -86,12 +73,25 @@ window.SPECTRAL_THEME = {
       phase: [0.63, 0.43],
       measuredCoverage: null,
       effectiveShare: null
+    },
+    {
+      id: "lilac",
+      label: "薄雾丁香",
+      oklch: { l: 0.925, c: 0.045, h: 304 },
+      srgbFallback: "#eee3f2",
+      intensity: 0.54,
+      peakOpacity: 0.076,
+      lightnessBias: 0.003,
+      fieldScale: 1.06,
+      phase: [0.39, 0.86],
+      measuredCoverage: null,
+      effectiveShare: null
     }
   ],
   field: {
-    scale: 1.08,
-    octaves: 4,
-    warpStrength: 0.32,
+    scale: 0.80,
+    octaves: 3,
+    warpStrength: 0.26,
     motionSpeed: 0.015,
     staticTime: 1.73,
     ditherStrength: 0.65,

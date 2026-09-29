@@ -1,0 +1,11 @@
+---
+layout: default
+---
+{%- assign empty_list = "" | split: "" -%}
+{%- assign essays = site.categories.essay | default: empty_list -%}
+{%- assign docs = essays | concat: site.notes | concat: site.thoughts | concat: site.interludes -%}
+<header class="masthead">
+  <h1 class="masthead-title">{{ site.title }}</h1>
+  <p class="masthead-lede">{{ site.description }}</p>
+</header>
+{% include entries.html docs=docs show_section=true %}

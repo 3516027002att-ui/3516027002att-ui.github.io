@@ -1,54 +1,34 @@
 (function () {
   "use strict";
 
+  const ARTICLE_INTENSITY = 0.15;
+
+  const root = document.documentElement;
   const config = window.SPECTRAL_THEME;
   const canvas = document.querySelector("#spectral-field");
-  const toggle = document.querySelector("#motion-toggle");
 
   if (!config || !canvas || !window.SpectralField) {
-    document.documentElement.classList.add("field-fallback");
+    root.classList.add("field-fallback");
     return;
   }
+
+  const fieldConfig = root.dataset.page === "article"
+    ? { ...config, overallColorIntensity: ARTICLE_INTENSITY }
+    : config;
 
   let field;
   try {
-    field = new window.SpectralField(canvas, config);
+    field = new window.SpectralField(canvas, fieldConfig);
   } catch (error) {
     console.warn("Spectral field unavailable; using CSS fallback.", error);
-    document.documentElement.classList.add("field-fallback");
+    root.classList.add("field-fallback");
     return;
   }
 
-  document.documentElement.dataset.renderer = field.available ? "webgl" : "css";
+  root.dataset.renderer = field.available ? "webgl" : "css";
+  if (!field.available) return;
 
-  if (!toggle) return;
-
-  const media = window.matchMedia("(prefers-reduced-motion: reduce)");
-  let motionEnabled = field.available && !media.matches;
-
-  function syncToggle() {
-    toggle.setAttribute("aria-pressed", String(!motionEnabled));
-    toggle.title = motionEnabled ? "暂停流光背景" : "恢复流光背景";
-    const label = toggle.querySelector(".motion-label");
-    if (label) label.textContent = motionEnabled ? "流光" : "静止";
-    document.documentElement.dataset.motion = motionEnabled ? "live" : "frozen";
-  }
-
-  toggle.addEventListener("click", () => {
-    motionEnabled = !motionEnabled;
-    field.setMotion(motionEnabled);
-    syncToggle();
-  });
-
-  if (typeof media.addEventListener === "function") {
-    media.addEventListener("change", (event) => {
-      if (event.matches) {
-        motionEnabled = false;
-        field.setMotion(false);
-        syncToggle();
-      }
-    });
-  }
-
-  syncToggle();
+  field.setMotion(false);
+  // SpectralField 在尺寸变化时会清空画布，静止状态下它不会自己重画。
+  window.addEventListener("resize", () => field.render(performance.now(), true), { passive: true });
 })();

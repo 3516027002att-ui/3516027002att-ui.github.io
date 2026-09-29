@@ -19,6 +19,28 @@ collections:
     output: true
     permalink: /interludes/:name/
 
+defaults:
+  - scope:
+      path: ""
+      type: posts
+    values:
+      section: essays
+  - scope:
+      path: ""
+      type: notes
+    values:
+      section: notes
+  - scope:
+      path: ""
+      type: thoughts
+    values:
+      section: thoughts
+  - scope:
+      path: ""
+      type: interludes
+    values:
+      section: interludes
+
 plugins:
   - jekyll-feed
 
